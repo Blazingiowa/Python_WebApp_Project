@@ -48,7 +48,7 @@ def download():
 
     print(files_que)
 
-    return render_template('download.html')
+    return render_template('download.html',video =files_que)
 
 @app.route('/upload_fttb',methods=['POST'])
 def upload_fttb():
