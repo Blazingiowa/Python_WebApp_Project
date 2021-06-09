@@ -1,1 +1,3 @@
 Python_WebApp_Project
+
+tmp.html自体は編集することなく、コピーして使うこと
