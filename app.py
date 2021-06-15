@@ -1,7 +1,7 @@
 from crypt import methods
 from fileinput import filename
 import flask
-from flask import render_template, request
+from flask import render_template, request, send_file
 import os,json,time
 import pathlib
 import functions as fn
@@ -12,6 +12,7 @@ OTHER_FILE_DIR='./static/other'
 MP3_PATH='/var/www/html/Web_File_SNS/static/mp3'
 VIDEO_PATH='/var/www/html/Web_File_SNS/static/mp4'
 OTHER_PATH='/var/www/html/Web_File_SNS/static/other'
+mp4_minetype = 'video/mp4'
 
 ALLOWED_EXTENSIONS=['.mp3','.mp4','.jpg','.png']
 #Function
@@ -65,6 +66,17 @@ def upload_fttb():
         fn.file_save(fs,OTHER_FILE_DIR)
     #fs.save(os.path.join(FILES_DIR,fs.filename))
     return render_template("upload.html")
+
+@app.route('/download_fttb',methods=['POST'])
+def download_fttb():
+    videoname = request.json['name']
+    print("ファイルネーム：" + videoname)
+
+    downloadFileName = videoname
+    downloadFile = FILES_DIR + '/' + videoname
+
+    return send_file(downloadFile, as_attachment=True,
+            attachment_filename=downloadFileName)
 
 @app.route('/video',methods=['POST'])
 def video():

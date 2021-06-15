@@ -1,3 +1,5 @@
+var message = document.getElementById('DL-message');
+
 document.querySelectorAll('.button').forEach(button => {
 
     let div = document.createElement('div'),
@@ -37,4 +39,45 @@ document.querySelectorAll('.button').forEach(button => {
         }
     });
 
+});
+
+function downloadFile(Files) {
+    console.log(Files);
+    var sendData = {name:Files};
+    var serveradr = 'http://192.168.236.128:5000';
+    var appdir = '/download_fttb';
+
+    $.ajax({
+        type:"post",
+        url:serveradr + appdir,
+        data:JSON.stringify(sendData),
+        datatype:"json",
+        contentType:"application/json;charset=UTF-8"
+    });
+
+    /*
+    var ajax = new XMLHttpRequest();
+    ajax.open("POST", "/download_fttb");
+    ajax.send(sendData);*/
+}
+
+$(function () {   
+    $(".alternative").click(function () {
+
+        var input_names = document.querySelectorAll("input[name=names]:checked");
+        if(0 < input_names.length){
+            for(var checkFile of input_names){}
+            downloadFile(checkFile.value);
+        }
+        else{
+            message.innerHTML = "※ダウンロードするものを選択してください";
+        }
+    });
+});
+$("[name='names']").on("click",function(){
+    if($(this).prop('checked')){
+        $("[name='names']").prop('checked',false);
+        $(this).prop('checked',true);
+        message.innerHTML = "";
+    }
 });

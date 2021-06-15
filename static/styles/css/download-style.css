@@ -85,6 +85,10 @@
   .button.in.out:before {
     --d-d: .06s;
   }
+  #DL-message{
+    text-align: center;
+    color: red;
+  }
     @-webkit-keyframes move {
     30%, 36% {
       transform: translateY(calc(-6px * var(--move))) translateZ(0) rotate(calc(-13deg * var(--rotate) * var(--part)));

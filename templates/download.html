@@ -143,12 +143,13 @@
             <div class="video-name">{{mp4}}</div>
             <div class="video-view">54K views<span class="seperate video-seperate"></span>1 week ago</div>
             <div class="video-checkbox">
-            <input type="checkbox">
-          </div>
+              <input type="checkbox" class="checkbox" name="names" value={{mp4}}>
+            </div>
           </div>
           {%endfor%}
         </div>
         <button class="button alternative">ダウンロード</button>
+        <div id="DL-message"></div>
         </div>
       </div>
     </div>
