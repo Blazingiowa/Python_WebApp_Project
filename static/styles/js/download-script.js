@@ -42,23 +42,27 @@ document.querySelectorAll('.button').forEach(button => {
 });
 
 function downloadFile(Files) {
-    console.log(Files);
     var sendData = {name:Files};
     var serveradr = 'http://192.168.236.128:5000';
     var appdir = '/download_fttb';
 
+    console.log("ダウンロードボタンが押されました")
+    document.getElementById('taihi_file').value = Files;
+    $(function(){
+        $("#taihi_form").submit()
+    })
+    //location.href=appdir;
+
+
+    /*
     $.ajax({
-        type:"post",
+        type:"POST",
         url:serveradr + appdir,
         data:JSON.stringify(sendData),
         datatype:"json",
         contentType:"application/json;charset=UTF-8"
-    });
+    });*/
 
-    /*
-    var ajax = new XMLHttpRequest();
-    ajax.open("POST", "/download_fttb");
-    ajax.send(sendData);*/
 }
 
 $(function () {   
