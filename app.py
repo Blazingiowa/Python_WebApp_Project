@@ -85,5 +85,11 @@ def trending():
 def uploads():
     return render_template('upload.html')
 
+@app.route('/music')
+def music():
+    music_list=fn.file_get(MP3_FILE_DIR)
+    print(music_list)
+    return render_template('musicplayer.html',music=music_list)
+
 if __name__=='__main__':
     app.run(debug=True,host='0.0.0.0')
