@@ -1,7 +1,7 @@
 from crypt import methods
 from fileinput import filename
 import flask
-from flask import render_template, request
+from flask import render_template, request, send_file
 import os,json,time
 import pathlib
 import functions as fn
@@ -48,7 +48,7 @@ def download():
 
     print(files_que)
 
-    return render_template('download.html')
+    return render_template('download.html',video =files_que)
 
 @app.route('/upload_fttb',methods=['POST'])
 def upload_fttb():
@@ -65,6 +65,39 @@ def upload_fttb():
         fn.file_save(fs,OTHER_FILE_DIR)
     #fs.save(os.path.join(FILES_DIR,fs.filename))
     return render_template("upload.html")
+
+@app.route('/download_fttb',methods=['POST'])
+def download_fttb():
+    videoname = request.form['taihi_name']
+
+    files_que=[]
+    for files_name_ichiran in os.listdir(MP3_PATH):
+        if os.path.isfile(os.path.join(MP3_PATH,files_name_ichiran)):
+            files_que.append(files_name_ichiran)
+    
+    for file_name_MP4 in os.listdir(VIDEO_PATH):
+        if os.path.isfile(os.path.join(VIDEO_PATH,file_name_MP4)):
+            files_que.append(file_name_MP4)
+
+    for file_name_other in os.listdir(OTHER_PATH):
+        if os.path.isfile(os.path.join(OTHER_PATH,file_name_other)):
+            files_que.append(file_name_other)
+
+    for Fname in files_que:
+        if Fname == videoname:
+            file_ex = os.path.splitext(Fname)
+            print("ファイル拡張子：",file_ex[1])
+            break
+        
+    if file_ex[1] =='.mp4':
+        downloadFile = FILES_DIR + '/' + videoname
+    elif file_ex[1] == '.mp3':
+        downloadFile = MP3_FILE_DIR + '/' + videoname
+    else:
+        downloadFile = OTHER_FILE_DIR + '/' + videoname
+
+    return send_file(downloadFile, as_attachment=True)
+
 
 @app.route('/video',methods=['POST'])
 def video():
