@@ -42,27 +42,10 @@ document.querySelectorAll('.button').forEach(button => {
 });
 
 function downloadFile(Files) {
-    var sendData = {name:Files};
-    var serveradr = 'http://192.168.236.128:5000';
-    var appdir = '/download_fttb';
-
-    console.log("ダウンロードボタンが押されました")
     document.getElementById('taihi_file').value = Files;
     $(function(){
         $("#taihi_form").submit()
     })
-    //location.href=appdir;
-
-
-    /*
-    $.ajax({
-        type:"POST",
-        url:serveradr + appdir,
-        data:JSON.stringify(sendData),
-        datatype:"json",
-        contentType:"application/json;charset=UTF-8"
-    });*/
-
 }
 
 $(function () {   

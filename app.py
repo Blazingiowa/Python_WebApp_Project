@@ -19,6 +19,36 @@ ALLOWED_EXTENSIONS=['.mp3','.mp4','.jpg','.png']
 #APP_Route
 @app.route('/')
 def index():
+    return render_template('login.html')
+
+@app.route('/signup',methods=["POST"])
+def signup():
+    username = request.form['username']
+    return render_template('login.html')
+
+@app.route('/login',methods=["POST"])
+def login():
+    email = request.form['email']
+    password = request.form['password']
+    mode = 'login'
+    userdata = fn.mysql(mode,email)
+    if password == userdata[2]:
+        files=[]
+        videoes=[]
+        for filename in os.listdir(MP3_PATH):
+            if os.path.isfile(os.path.join(MP3_PATH,filename)):
+                files.append(filename)
+
+        for mp4files in os.listdir(VIDEO_PATH):
+            if os.path.isfile(os.path.join(VIDEO_PATH,mp4files)):
+                videoes.append(mp4files)
+        return render_template('index.html',file=files,video=videoes)
+    else:
+        return render_template('login.html')
+        
+"""
+@app.route('/')
+def index():
     files=[]
     videoes=[]
     for filename in os.listdir(MP3_PATH):
@@ -30,6 +60,7 @@ def index():
             videoes.append(mp4files)
             print(mp4files)
     return render_template('index.html',file=files,video=videoes)
+    """
 
 @app.route('/download')
 def download():
