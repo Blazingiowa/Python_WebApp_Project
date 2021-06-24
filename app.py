@@ -29,10 +29,13 @@ def signup():
 @app.route('/login',methods=["POST"])
 def login():
     email = request.form['email']
-    password = request.form['password']
     mode = 'login'
+
+    #ハッシュ化処理
     userdata = fn.mysql(mode,email)
-    if password == userdata[2]:
+    password = fn.HashPassword(request.form['password'])
+
+    if password == userdata:
         files=[]
         videoes=[]
         for filename in os.listdir(MP3_PATH):
