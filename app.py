@@ -1,8 +1,6 @@
-from crypt import methods
-from fileinput import filename
 import flask
 from flask import render_template, request, send_file
-import os,json,time
+import os
 import pathlib
 import functions as fn
 app=flask.Flask(__name__)
@@ -38,20 +36,16 @@ def login():
     if password == userdata:
         files=[]
         videoes=[]
-        for filename in os.listdir(MP3_PATH):
-            if os.path.isfile(os.path.join(MP3_PATH,filename)):
-                files.append(filename)
 
-        for mp4files in os.listdir(VIDEO_PATH):
-            if os.path.isfile(os.path.join(VIDEO_PATH,mp4files)):
-                videoes.append(mp4files)
+        files=fn.Array_manipulation(MP3_PATH)
+        videoes=fn.Array_manipulation(VIDEO_PATH)
+        
         return render_template('index.html',file=files,video=videoes)
     else:
         return render_template('login.html')
         
-"""
-@app.route('/')
-def index():
+@app.route('/root')
+def root():
     files=[]
     videoes=[]
     for filename in os.listdir(MP3_PATH):
@@ -61,13 +55,12 @@ def index():
     for mp4files in os.listdir(VIDEO_PATH):
         if os.path.isfile(os.path.join(VIDEO_PATH,mp4files)):
             videoes.append(mp4files)
-            print(mp4files)
     return render_template('index.html',file=files,video=videoes)
-    """
 
 @app.route('/download')
 def download():
     files_que=[]
+
     for files_name_ichiran in os.listdir(MP3_PATH):
         if os.path.isfile(os.path.join(MP3_PATH,files_name_ichiran)):
             files_que.append(files_name_ichiran)
@@ -79,8 +72,6 @@ def download():
     for file_name_other in os.listdir(OTHER_PATH):
         if os.path.isfile(os.path.join(OTHER_PATH,file_name_other)):
             files_que.append(file_name_other)
-
-    print(files_que)
 
     return render_template('download.html',video =files_que)
 
@@ -97,7 +88,7 @@ def upload_fttb():
         fn.file_save(fs,MP3_FILE_DIR)
     else:
         fn.file_save(fs,OTHER_FILE_DIR)
-    #fs.save(os.path.join(FILES_DIR,fs.filename))
+
     return render_template("upload.html")
 
 @app.route('/download_fttb',methods=['POST'])
@@ -136,8 +127,9 @@ def download_fttb():
 @app.route('/video',methods=['POST'])
 def video():
     video_name=request.form.get('video-name')
-    print(video_name)
-    return render_template('video.html',video_name=video_name)
+    #いいねの数取得
+    NumberOfLikes=fn.DataBaseManipulationGetNumberOfLikes(video_name[14:])
+    return render_template('video.html',video_name=video_name,NumberOfLikes=NumberOfLikes)
 
 @app.route('/trending')
 def trending():
@@ -146,6 +138,7 @@ def trending():
         if os.path.isfile(os.path.join(VIDEO_PATH,mp4files)):
             videoes_fttb.append(mp4files)
     video_path_string='../static/mp4/'+str(videoes_fttb[0])
+
     return render_template('video.html',video_name=video_path_string)
 
 @app.route('/uploads')
@@ -155,8 +148,14 @@ def uploads():
 @app.route('/music')
 def music():
     music_list=fn.file_get(MP3_FILE_DIR)
-    print(music_list)
     return render_template('musicplayer.html',music=music_list)
+
+@app.route('/likes',methods=['POST'])
+def likes():
+    NumberOfLikes=request.form['number_of_likes']
+
+    #ここにデータベースの処理を書く
+    return NumberOfLikes
 
 if __name__=='__main__':
     app.run(debug=True,host='0.0.0.0')

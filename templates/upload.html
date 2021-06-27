@@ -125,8 +125,8 @@
             <input type="radio" name="switch-color" id="cyan" hidden>
             <input type="radio" name="switch-color" id="lime" hidden>
             <div class="charts">
-              <div class="bar-90" id="progress-bar">
-                <div class="bar white">
+              <div class="bar-90" id="progress-bar" style="--delay: .2s">
+                <div class="bar white" style="--delay: .3s">
                   <div class="face top">
                     <div class="growing-bar"></div>
                   </div>
@@ -155,11 +155,11 @@
               <div class='loader--dot'></div>
             </div>
 
-            <p id="progress-text">0%</p>
+            <p id="progress-text" style="--delay: .4s">0%</p>
             <nav class="actions">
-              <label for="red" class="color-label">Red</label>
-              <label for="cyan" class="color-label">Cyan</label>
-              <label for="lime" class="color-label">Lime</label>
+              <label for="red" class="color-label" style="--delay: .5s">Red</label>
+              <label for="cyan" class="color-label" style="--delay: .6s">Cyan</label>
+              <label for="lime" class="color-label" style="--delay: .7s">Lime</label>
             </nav>
           </article>
           <progress id="progressBar" value="0" max="100" style="width:300px;" hidden></progress>
@@ -169,10 +169,10 @@
                 <i class="fa fa-upload" aria-hidden="true"></i>
                 Select Your Files
               </label>
-              <input id="file" type="file" name="upfile" />
+              <input id="file" type="file" name="upfile" style="--delay: .8s" />
             </div>
           </form>
-          <button class="button alternative">アップロード</button>
+          <button class="button alternative" style="--delay: .9s">アップロード</button>
         </div>
       </div>
     </div>
