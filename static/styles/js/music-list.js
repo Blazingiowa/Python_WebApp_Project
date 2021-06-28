@@ -16,7 +16,7 @@ for(var i=0;i<ms_list.length;i++){
 
   music_info.name=baseName(filename);
   music_info.artist=""
-  music_info.img=""
+  music_info.img="harujion.png"
   music_info.src=baseName(filename);
 
   allMusic.push(music_info);
