@@ -129,7 +129,9 @@ def video():
     video_name=request.form.get('video-name')
     #いいねの数取得
     NumberOfLikes=fn.DataBaseManipulationGetNumberOfLikes(video_name[14:])
-    return render_template('video.html',video_name=video_name,NumberOfLikes=NumberOfLikes)
+    #動画のコメント取得
+    video_comment_arry=fn.GetAllVideoComments(video_name[14:])
+    return render_template('video.html',video_name=video_name,NumberOfLikes=NumberOfLikes,videocomments=video_comment_arry)
 
 @app.route('/trending')
 def trending():
@@ -153,9 +155,19 @@ def music():
 @app.route('/likes',methods=['POST'])
 def likes():
     NumberOfLikes=request.form['number_of_likes']
-
-    #ここにデータベースの処理を書く
+    VideoName=request.form['videoname']
+    #データベース更新処理
+    fn.UpdateDataBaseCountUpNumberOfLikes(NumberOfLikes,VideoName)
     return NumberOfLikes
+
+@app.route('/comments',methods=['POST'])
+def comments():
+    PostedComments=request.form['comment']
+    videoname=request.form['videoname']
+
+    fn.DataBaseManipulationInsertVideoComments(PostedComments,videoname)
+
+    return PostedComments
 
 if __name__=='__main__':
     app.run(debug=True,host='0.0.0.0')

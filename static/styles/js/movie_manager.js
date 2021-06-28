@@ -29,21 +29,52 @@ $(function () {
 
     //HTMLに反映
     $("#counter").text(NumberOfLikes);
-    ConnectMySQLThrowNumberOfLikes(NumberOfLikes);
+
+    //条件検索のための動画名取得
+    var Video_name=getVideoName();
+    //Databaseにも反映
+    ConnectMySQLThrowNumberOfLikes(NumberOfLikes,Video_name);
+  });
+
+  //コメント送信機能反映
+  $('.btn-primary').click(function(){
+    //テキストボックスの中身取得
+    var comment=$("#input1").val();
+
+    //HTML反映
+    $(".comment-tmp").clone(true).removeClass("comment-tmp").addClass("video-comments").text(comment).appendTo("#comments");
+    //POST送信
+    var videoname=getVideoName();
+    ConnectMySQLThrowVideoComment(comment,videoname)
+
+    $("#input1").val("");
   });
 });
 
-function ConnectMySQLThrowNumberOfLikes(Likes){
-  /*var data={"likes_number":Likes}
-  xhr=new XMLHttpRequest();
-  xhr.open("POST","/likes")
-  xhr.send(data);*/
+function ConnectMySQLThrowVideoComment(comment,videoname){
+  $.ajax({
+    url:'comments',
+    type:'POST',
+    data:{
+      comment:comment,
+      videoname:videoname
+    }
+  });
+}
+
+function ConnectMySQLThrowNumberOfLikes(Likes,video_name){
 
   $.ajax({
     url:'/likes',
     type:'POST',
     data:{
-      number_of_likes:Likes
+      number_of_likes:Likes,
+      videoname:video_name
     }
-  })
+  });
+}
+
+function getVideoName(){
+  var Video_name=$('.video-p-title').text();
+  return Video_name;
 }

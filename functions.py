@@ -2,6 +2,8 @@ import os
 import MySQLdb
 import hashlib
 
+from MySQLdb import connections
+
 def file_save(fs,dir):
     fs.save(os.path.join(dir,fs.filename))
 
@@ -70,6 +72,7 @@ def DataBaseManipulationGetNumberOfLikes(video_name):
     #カーソル
     cursor=connection.cursor()
 
+    #いいねの数取得のための検索
     cursor.execute(GetAllFileNameSQL)
     rows=cursor.fetchall()
     for index,re in enumerate(rows):
@@ -87,6 +90,43 @@ def DataBaseManipulationGetNumberOfLikes(video_name):
         CloseDatabaseConnection(cursor,connection)
 
         return 0
+
+def UpdateDataBaseCountUpNumberOfLikes(likes,video):
+    #DB接続
+    connection=MySQLData()
+    cursor=connection.cursor()
+
+    UpdateNumberOfLikesSQL='UPDATE video_info SET number_of_likes='+likes+' WHERE video_name="'+video+'"'
+
+    cursor.execute(UpdateNumberOfLikesSQL)
+    connection.commit()
+
+    CloseDatabaseConnection(cursor,connection)
+
+def DataBaseManipulationInsertVideoComments(comment,video_name):
+    #DB接続
+    connection=MySQLData()
+    cursor=connection.cursor()
+
+    InsertVideoCommentSQL='INSERT INTO video_comments(video_name,comment) VALUES("'+video_name+'","'+comment+'")'
+    cursor.execute(InsertVideoCommentSQL)
+    connection.commit()
+
+    CloseDatabaseConnection(cursor,connection)
+
+def GetAllVideoComments(videoname):
+    #DB接続
+    conection=MySQLData()
+    cursor=conection.cursor()
+
+    GetAllComentsSQL='SELECT comment FROM video_comments WHERE video_name="'+videoname+'"'
+    cursor.execute(GetAllComentsSQL)
+
+    rows=cursor.fetchall()
+
+    CloseDatabaseConnection(cursor,conection)
+
+    return rows
 
 def CloseDatabaseConnection(cursor,connection):
     cursor.close

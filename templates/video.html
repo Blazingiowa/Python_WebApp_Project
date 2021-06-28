@@ -170,15 +170,15 @@
                   </div>
                 </div>
                 <div class="video-p-title anim" style="--delay: .2s">{{video_name[14:]}}</div>
-                <div class="video-p-subtitle anim" style="--delay: .3s">Lorem ipsum dolor sit amet consectetur
-                  adipisicing elit. Repellendus illum tempora consequuntur. Lorem ipsum dolor sit amet consectetur
-                  adipisicing elit. Debitis earum velit accusantium maiores qui sit quas, laborum voluptatibus vero
-                  quidem tempore facilis voluptate tempora deserunt! </div>
-                <div class="video-p-subtitle anim" style="--delay: .4s">Lorem ipsum dolor sit amet consectetur
-                  adipisicing elit. Temporibus laborum qui dolorum fugiat eius accusantium repellendus illum tempora
-                  consequuntur. Lorem ipsum dolor, sit amet consectetur adipisicing elit.</div>
+                <ul id="comments">
+                  <div class="comment-tmp anim" style="--delay: .3s">コメント欄</div>
 
-                <div class="video-p-subtitle anim" style="--delay: .5s">
+                  {% for com in videocomments%}
+                  <div class="video-comments anim" style="--delay: .5s">{{com[0]}}</div>
+                  {%endfor%}
+                </ul>
+
+                <div class="video-p-subtitle anim" style="--delay: .6s">
                   <div class="text-input">
                     <input type="text" id="input1" placeholder="コメントを投稿しましょう!">
                     <label for="input1">コメント</label>
