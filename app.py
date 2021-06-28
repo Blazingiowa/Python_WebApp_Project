@@ -27,53 +27,55 @@ def signup():
 @app.route('/login',methods=["POST"])
 def login():
     email = request.form['email']
-    mode = 'login'
+
+    #emailを元にユーザー検索しパスワードを取得
+    userdata = fn.LoginMypage(email)
 
     #ハッシュ化処理
-    userdata = fn.mysql(mode,email)
     password = fn.HashPassword(request.form['password'])
 
+    #パスワードが一致するかどうか
     if password == userdata:
         files=[]
         videoes=[]
-
         files=fn.Array_manipulation(MP3_PATH)
         videoes=fn.Array_manipulation(VIDEO_PATH)
-        
         return render_template('index.html',file=files,video=videoes)
     else:
-        return render_template('login.html')
+        return render_template('result.html',message="メールアドレスまたはパスワードが違います")
         
 @app.route('/root')
 def root():
-    files=[]
-    videoes=[]
+    MP3_files=[]
+    MP4_files=[]
     for filename in os.listdir(MP3_PATH):
         if os.path.isfile(os.path.join(MP3_PATH,filename)):
-            files.append(filename)
+            MP3_files.append(filename)
 
     for mp4files in os.listdir(VIDEO_PATH):
         if os.path.isfile(os.path.join(VIDEO_PATH,mp4files)):
-            videoes.append(mp4files)
-    return render_template('index.html',file=files,video=videoes)
+            MP4_files.append(mp4files)
+    return render_template('index.html',music=MP3_files,video=MP4_files)
 
 @app.route('/download')
 def download():
-    files_que=[]
+    MP3_files=[]
+    MP4_files=[]
+    OTHER_files=[]
 
     for files_name_ichiran in os.listdir(MP3_PATH):
         if os.path.isfile(os.path.join(MP3_PATH,files_name_ichiran)):
-            files_que.append(files_name_ichiran)
+            MP3_files.append(files_name_ichiran)
     
     for file_name_MP4 in os.listdir(VIDEO_PATH):
         if os.path.isfile(os.path.join(VIDEO_PATH,file_name_MP4)):
-            files_que.append(file_name_MP4)
+            MP4_files.append(file_name_MP4)
 
     for file_name_other in os.listdir(OTHER_PATH):
         if os.path.isfile(os.path.join(OTHER_PATH,file_name_other)):
-            files_que.append(file_name_other)
+            OTHER_files.append(file_name_other)
 
-    return render_template('download.html',video =files_que)
+    return render_template('download.html',music=MP3_files,video=MP4_files,other=OTHER_files)
 
 @app.route('/upload_fttb',methods=['POST'])
 def upload_fttb():
@@ -93,6 +95,7 @@ def upload_fttb():
 
 @app.route('/download_fttb',methods=['POST'])
 def download_fttb():
+    
     videoname = request.form['taihi_name']
 
     files_que=[]
@@ -111,7 +114,6 @@ def download_fttb():
     for Fname in files_que:
         if Fname == videoname:
             file_ex = os.path.splitext(Fname)
-            print("ファイル拡張子：",file_ex[1])
             break
         
     if file_ex[1] =='.mp4':

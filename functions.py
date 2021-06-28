@@ -21,7 +21,7 @@ def HashPassword(pass_str):
 
     return hash_result
 
-#MySQL(mode->処理内容 data->sqlに必要な項目)
+#MySQLに接続する関数
 def MySQLData():
     con = MySQLdb.connect(
         user = 'giveup_security',
@@ -30,31 +30,30 @@ def MySQLData():
         db = 'webapp',
         #charset = 'utf8'
     )
-
     return con
 
-def mysql(mode,data):
-    #接続
-    con=MySQLData()
+#MySQLから切断する関数
+def CloseDatabaseConnection(cursor,connection):
+    cursor.close
+    connection.close
 
-    #カーソルの取得
+def LoginMypage(data):
+    con = MySQLData()
     cur = con.cursor()
 
-    #サインアップ
-    if mode == 'signup':
-        sql = 'select'
-    #ログイン
-    elif mode == 'login':
-        sql = 'select * from user_info where mailaddr = ' + "'" + data + "'"
-        cur.execute(sql)
-        rows = cur.fetchall()
-        for row in rows:
-            break
-
-        hs_passWD=HashPassword(row[2])
-
-        CloseDatabaseConnection(cur,con)
-        return hs_passWD
+    #mailaddrを元にユーザー検索
+    sql = 'select * from user_info where mailaddr = ' + "'" + data + "'"
+    cur.execute(sql)
+    #引っ張ってきたデータを取得
+    rows = cur.fetchall()
+    if(rows == None):
+        return "none"
+    for row in rows:
+        break
+    #パスワードをハッシュ化
+    hs_passWD=HashPassword(row[2])
+    CloseDatabaseConnection(cur,con)
+    return hs_passWD
 
 def Array_manipulation(Path):
     ArrayName=[]

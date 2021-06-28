@@ -124,6 +124,32 @@
 
         <div class="small-header anim" style="--delay: .3s">動画の一覧</div>
         <div class="videos">
+          <!--MP3-->
+          {% for mp3 in music%}
+          <div class="video anim" style="--delay: .4s">
+            <div class="video-time">8 min</div>
+            <div class="video-wrapper">
+              <video muted="">
+                <source src="../static/mp3/{{mp3}}" type="video/mp4">
+              </video>
+              <div class="author-img__wrapper video-author">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round" class="feather feather-check">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                <img class="author-img"
+                  src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
+              </div>
+            </div>
+            <div class="video-by">Andy William</div>
+            <div class="video-name">{{mp3}}</div>
+            <div class="video-view">54K views<span class="seperate video-seperate"></span>1 week ago</div>
+            <div class="video-checkbox">
+              <input type="checkbox" class="checkbox" name="names" value={{mp4}}>
+            </div>
+          </div>
+          {%endfor%}
+          <!--MP4-->
           {% for mp4 in video%}
           <div class="video anim" style="--delay: .4s">
             <div class="video-time">8 min</div>
