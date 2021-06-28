@@ -37,6 +37,19 @@ def CloseDatabaseConnection(cursor,connection):
     cursor.close
     connection.close
 
+def SignupMyaccount(userdata):
+    try:
+        con = MySQLData()
+        cur = con.cursor()
+        sql = 'insert into user_info(username,password,mailaddr) values(%s,%s,%s)'
+        cur.execute(sql,userdata)
+        con.commit()
+    except Exception as e:
+        return e
+    
+    CloseDatabaseConnection(cur,con)
+    return "success"
+
 def LoginMypage(data):
     con = MySQLData()
     cur = con.cursor()

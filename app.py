@@ -21,8 +21,26 @@ def index():
 
 @app.route('/signup',methods=["POST"])
 def signup():
-    username = request.form['username']
-    return render_template('login.html')
+    userdata = []
+    userdata.append(request.form['username'])
+    userdata.append(request.form['password'])
+    userdata.append(request.form['email'])
+
+    resultdata = fn.SignupMyaccount(userdata)
+    print(resultdata)
+    if resultdata == "success": 
+        MP3_files=[]
+        MP4_files=[]
+        for filename in os.listdir(MP3_PATH):
+            if os.path.isfile(os.path.join(MP3_PATH,filename)):
+                MP3_files.append(filename)
+
+        for mp4files in os.listdir(VIDEO_PATH):
+            if os.path.isfile(os.path.join(VIDEO_PATH,mp4files)):
+                MP4_files.append(mp4files)
+        return render_template('index.html',music=MP3_files,video=MP4_files)
+    else:
+        return render_template('result.html',message = "そのメールアドレスは既に使用されています")
 
 @app.route('/login',methods=["POST"])
 def login():
