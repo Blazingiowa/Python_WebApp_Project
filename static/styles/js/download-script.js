@@ -1,4 +1,5 @@
 var message = document.getElementById('DL-message');
+var filetxt;
 
 document.querySelectorAll('.button').forEach(button => {
 
@@ -41,8 +42,9 @@ document.querySelectorAll('.button').forEach(button => {
 
 });
 
-function downloadFile(Files) {
-    document.getElementById('taihi_file').value = Files;
+function downloadFile() {
+    document.getElementById('taihi_file').value = filetxt;
+
     $(function(){
         $("#taihi_form").submit()
     })
@@ -52,12 +54,12 @@ $(function () {
     $(".alternative").click(function () {
 
         var input_names = document.querySelectorAll("input[name=names]:checked");
-        if(0 < input_names.length){
-            for(var checkFile of input_names){}
-            downloadFile(checkFile.value);
+        
+        if(0 >= input_names.length){
+            message.innerHTML = "※ダウンロードするものを選択してください";
         }
         else{
-            message.innerHTML = "※ダウンロードするものを選択してください";
+            downloadFile();
         }
     });
 });
@@ -65,6 +67,8 @@ $("[name='names']").on("click",function(){
     if($(this).prop('checked')){
         $("[name='names']").prop('checked',false);
         $(this).prop('checked',true);
+        //チェックを付けた動画の名前を格納
+        filetxt = $(this).parent().prev().prev().text();
         message.innerHTML = "";
     }
 });
