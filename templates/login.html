@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="ja" >
 <head>
   <meta charset="UTF-8">
-  <title>Webapp Login and Sign up</title>
+  <title>ログイン</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300, 400, 500" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="../static/styles/css/login.css">
 
@@ -18,14 +18,14 @@
   <div class="user_options-container">
     <div class="user_options-text">
       <div class="user_options-unregistered">
-        <h2 class="user_unregistered-title">Don't have an account?</h2>
-        <p class="user_unregistered-text">Click here [SIGN UP] botton</p>
+        <h2 class="user_unregistered-title">アカウントを持っていませんか?</h2>
+        <p class="user_unregistered-text">[SIGN UP]　ボタンをクリックしてください！</p>
         <button class="user_unregistered-signup" id="signup-button">Sign up</button>
       </div>
 
       <div class="user_options-registered">
-        <h2 class="user_registered-title">Have an account?</h2>
-        <p class="user_registered-text">Click here [LOGIN] botton</p>
+        <h2 class="user_registered-title">既にアカウントを持っていますか?</h2>
+        <p class="user_registered-text">[LOGIN]ボタンをクリックしましょう</p>
         <button class="user_registered-login" id="login-button">Login</button>
       </div>
     </div>
@@ -33,7 +33,7 @@
     <div class="user_options-forms" id="user_options-forms">
       <!--ログイン-->
       <div class="user_forms-login">
-        <h2 class="forms_title">Login</h2>
+        <h2 class="forms_title">ログイン</h2>
         <form class="forms_form" action="login" method="POST">
           <fieldset class="forms_fieldset">
             <div class="forms_field">
@@ -44,7 +44,7 @@
             </div>
           </fieldset>
           <div class="forms_buttons">
-            <button type="button" class="forms_buttons-forgot">Forgot password?</button>
+            <button type="button" class="forms_buttons-forgot">パスワードを忘れましたか?</button>
             <input type="submit" value="Log In" class="forms_buttons-action">
           </div>
         </form>
@@ -52,7 +52,7 @@
 
       <!--サインアップ-->
       <div class="user_forms-signup">
-        <h2 class="forms_title">Sign Up</h2>
+        <h2 class="forms_title">サインアップ</h2>
         <form class="forms_form" action="signup" method="POST">
           <fieldset class="forms_fieldset">
             <div class="forms_field">
