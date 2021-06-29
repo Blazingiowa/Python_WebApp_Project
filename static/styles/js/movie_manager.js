@@ -20,6 +20,8 @@ for (let i = 0; i < bubblyButtons.length; i++) {
 
 //Ajaxでいいね押された時の処理
 $(function () {
+  var commcount=0;
+
   $(".goodbutton").click(function () {
     //いいねの数取得
     var SpanText=$("#counter").text();
@@ -40,9 +42,10 @@ $(function () {
   $('.btn-primary').click(function(){
     //テキストボックスの中身取得
     var comment=$("#input1").val();
-
+    commcount+=1;
     //HTML反映
-    $(".comment-tmp").clone(true).removeClass("comment-tmp").addClass("video-comments").text(comment).appendTo("#comments");
+    $(".com-elm").clone(true).removeClass("com-elm").addClass("comment-main-level"+commcount).appendTo("#comments");
+    $(".comment-main-level"+commcount).find(".comment-content").text(comment);
     //POST送信
     var videoname=getVideoName();
     ConnectMySQLThrowVideoComment(comment,videoname)

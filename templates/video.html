@@ -173,8 +173,43 @@
                 <ul id="comments">
                   <div class="comment-tmp anim" style="--delay: .3s">コメント欄</div>
 
+                  <!--設計図用要素-->
+                  <div class="anim com-elm" style="--delay: .6s">
+                    <!-- Avatar -->
+                    <div class="comment-avatar"></div>
+                    <!-- Contenedor del Comentario -->
+                    <div class="comment-box">
+                      <div class="comment-head">
+                        <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">名前</a></h6>
+                        <span>hace 20 minutos</span>
+                        <i class="fa fa-reply"></i>
+                        <i class="fa fa-heart"></i>
+                      </div>
+                      <div class="comment-content">
+                        テキスト
+                      </div>
+                    </div>
+                  </div>
+
                   {% for com in videocomments%}
-                  <div class="video-comments anim" style="--delay: .5s">{{com[0]}}</div>
+                  <!--<div class="video-comments anim" style="--delay: .5s">{{com[0]}}</div>-->
+                  
+                  <div class="comment-main-level anim" style="--delay: .6s">
+                    <!-- Avatar -->
+                    <div class="comment-avatar"></div>
+                    <!-- Contenedor del Comentario -->
+                    <div class="comment-box">
+                      <div class="comment-head">
+                        <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">名前</a></h6>
+                        <span>hace 20 minutos</span>
+                        <i class="fa fa-reply"></i>
+                        <i class="fa fa-heart"></i>
+                      </div>
+                      <div class="comment-content">
+                        {{com[0]}}
+                      </div>
+                    </div>
+                  </div>
                   {%endfor%}
                 </ul>
 
@@ -331,6 +366,7 @@
   <script src='https://vjs.zencdn.net/5-unsafe/video.js'></script>
   <script src="../static/styles/js/script.js"></script>
   <script src="../static/styles/js/movie_manager.js"></script>
+  
 </body>
 
 </html>
