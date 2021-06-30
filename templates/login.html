@@ -1,80 +1,87 @@
 <!DOCTYPE html>
-<html lang="ja" >
+<html lang="ja">
+
 <head>
+  <link rel="icon" href="../static/styles/img/waithi_icon.ico">
   <meta charset="UTF-8">
   <title>ログイン</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:300, 400, 500" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel="stylesheet" href="../static/styles/css/login.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300, 400, 500" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="../static/styles/css/login.css">
 
 </head>
+
 <body>
-<!-- partial:index.partial.html -->
-<!--
+  <!-- partial:index.partial.html -->
+  <!--
   This was created based on the Dribble shot by Deepak Yadav that you can find at https://goo.gl/XRALsw
   I'm @hk95 on GitHub. Feel free to message me anytime.
 -->
 
-<section class="user">
-  <div class="user_options-container">
-    <div class="user_options-text">
-      <div class="user_options-unregistered">
-        <h2 class="user_unregistered-title">アカウントを持っていませんか?</h2>
-        <p class="user_unregistered-text">[SIGN UP]　ボタンをクリックしてください！</p>
-        <button class="user_unregistered-signup" id="signup-button">Sign up</button>
+  <section class="user">
+    <div class="user_options-container">
+      <div class="user_options-text">
+        <div class="user_options-unregistered">
+          <h2 class="user_unregistered-title">アカウントを持っていませんか?</h2>
+          <p class="user_unregistered-text">[SIGN UP]　ボタンをクリックしてください！</p>
+          <button class="user_unregistered-signup" id="signup-button">Sign up</button>
+        </div>
+
+        <div class="user_options-registered">
+          <h2 class="user_registered-title">既にアカウントを持っていますか?</h2>
+          <p class="user_registered-text">[LOGIN]ボタンをクリックしましょう</p>
+          <button class="user_registered-login" id="login-button">Login</button>
+        </div>
       </div>
 
-      <div class="user_options-registered">
-        <h2 class="user_registered-title">既にアカウントを持っていますか?</h2>
-        <p class="user_registered-text">[LOGIN]ボタンをクリックしましょう</p>
-        <button class="user_registered-login" id="login-button">Login</button>
-      </div>
-    </div>
-    
-    <div class="user_options-forms" id="user_options-forms">
-      <!--ログイン-->
-      <div class="user_forms-login">
-        <h2 class="forms_title">ログイン</h2>
-        <form class="forms_form" action="login" method="POST">
-          <fieldset class="forms_fieldset">
-            <div class="forms_field">
-              <input type="email" placeholder="Email" class="forms_field-input" name="email" required autofocus />
+      <div class="user_options-forms" id="user_options-forms">
+        <!--ログイン-->
+        <div class="user_forms-login">
+          <h2 class="forms_title">ログイン</h2>
+          <form class="forms_form" action="login" method="POST">
+            <fieldset class="forms_fieldset">
+              <div class="forms_field">
+                <input type="email" placeholder="Email" class="forms_field-input" name="email" required autofocus />
+              </div>
+              <div class="forms_field">
+                <input type="password" placeholder="Password" class="forms_field-input" name="password" required />
+              </div>
+            </fieldset>
+            <div class="forms_buttons">
+              <button type="button" class="forms_buttons-forgot">パスワードを忘れましたか?</button>
+              <input type="submit" value="Log In" class="forms_buttons-action">
             </div>
-            <div class="forms_field">
-              <input type="password" placeholder="Password" class="forms_field-input" name="password" required />
-            </div>
-          </fieldset>
-          <div class="forms_buttons">
-            <button type="button" class="forms_buttons-forgot">パスワードを忘れましたか?</button>
-            <input type="submit" value="Log In" class="forms_buttons-action">
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
 
-      <!--サインアップ-->
-      <div class="user_forms-signup">
-        <h2 class="forms_title">サインアップ</h2>
-        <form class="forms_form" action="signup" method="POST">
-          <fieldset class="forms_fieldset">
-            <div class="forms_field">
-              <input type="text" placeholder="UserName" class="forms_field-input" name="username" required maxlength="16" />
+        <!--サインアップ-->
+        <div class="user_forms-signup">
+          <h2 class="forms_title">サインアップ</h2>
+          <form class="forms_form" action="signup" method="POST">
+            <fieldset class="forms_fieldset">
+              <div class="forms_field">
+                <input type="text" placeholder="UserName" class="forms_field-input" name="username" required
+                  maxlength="16" />
+              </div>
+              <div class="forms_field">
+                <input type="email" placeholder="Email" class="forms_field-input" name="email" required />
+              </div>
+              <div class="forms_field">
+                <input type="password" placeholder="Password" class="forms_field-input" name="password" required
+                  minlength="8" />
+              </div>
+            </fieldset>
+            <div class="forms_buttons">
+              <input type="submit" value="Sign up" class="forms_buttons-action">
             </div>
-            <div class="forms_field">
-              <input type="email" placeholder="Email" class="forms_field-input" name="email" required />
-            </div>
-            <div class="forms_field">
-              <input type="password" placeholder="Password" class="forms_field-input" name="password" required minlength="8" />
-            </div>
-          </fieldset>
-          <div class="forms_buttons">
-            <input type="submit" value="Sign up" class="forms_buttons-action">
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- partial -->
-  <script  src="../static/styles/js/login.js"></script>
+  </section>
+  <!-- partial -->
+  <script src="../static/styles/js/login.js"></script>
 
 </body>
+
 </html>

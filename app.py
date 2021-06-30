@@ -27,7 +27,6 @@ def signup():
     userdata.append(request.form['email'])
 
     resultdata = fn.SignupMyaccount(userdata)
-    print(resultdata)
     if resultdata == "success": 
         MP3_files=[]
         MP4_files=[]
@@ -62,8 +61,8 @@ def login():
     else:
         return render_template('result.html',message="メールアドレスまたはパスワードが違います")
         
-@app.route('/root')
-def root():
+@app.route('/home')
+def home():
     MP3_files=[]
     MP4_files=[]
     for filename in os.listdir(MP3_PATH):
@@ -151,6 +150,7 @@ def video():
     NumberOfLikes=fn.DataBaseManipulationGetNumberOfLikes(video_name[14:])
     #動画のコメント取得
     video_comment_arry=fn.GetAllVideoComments(video_name[14:])
+
     return render_template('video.html',video_name=video_name,NumberOfLikes=NumberOfLikes,videocomments=video_comment_arry)
 
 @app.route('/trending')
@@ -184,8 +184,9 @@ def likes():
 def comments():
     PostedComments=request.form['comment']
     videoname=request.form['videoname']
+    date=request.form['date']
 
-    fn.DataBaseManipulationInsertVideoComments(PostedComments,videoname)
+    fn.DataBaseManipulationInsertVideoComments(PostedComments,videoname,date)
 
     return PostedComments
 

@@ -48,19 +48,27 @@ $(function () {
     $(".comment-main-level"+commcount).find(".comment-content").text(comment);
     //POST送信
     var videoname=getVideoName();
-    ConnectMySQLThrowVideoComment(comment,videoname)
+
+    //日付取得
+    var ComDate=new Date();
+    var PostedCommentDate=ComDate.getFullYear()+"-"+Number(ComDate.getMonth()+1)+"-"+ComDate.getDate();
+
+    $(".comment-main-level"+commcount).find("#com-date").text(PostedCommentDate);
+
+    ConnectMySQLThrowVideoComment(comment,videoname,PostedCommentDate)
 
     $("#input1").val("");
   });
 });
 
-function ConnectMySQLThrowVideoComment(comment,videoname){
+function ConnectMySQLThrowVideoComment(comment,videoname,PostedCommentDate){
   $.ajax({
     url:'comments',
     type:'POST',
     data:{
       comment:comment,
-      videoname:videoname
+      videoname:videoname,
+      date:PostedCommentDate
     }
   });
 }
