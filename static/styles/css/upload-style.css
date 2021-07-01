@@ -871,9 +871,10 @@
 
   .headline--jump .char {
     --name: jump;
-    --dur: 800ms;
-    --del: calc(var(--char-index) * 0.075s);
+    --dur: 3000ms;
+    --del: calc(var(--char-index) * 0.17s);
     --tf: cubic-bezier(0.165, 0.44, 0.64, 1);
+    color: #ffff00;
   }
   @-webkit-keyframes jump {
     20% {
