@@ -63,10 +63,9 @@ def LoginMypage(data):
         return "none"
     for row in rows:
         break
-    #パスワードをハッシュ化
-    hs_passWD=HashPassword(row[2])
+
     CloseDatabaseConnection(cur,con)
-    return hs_passWD
+    return row[2]
 
 def Array_manipulation(Path):
     ArrayName=[]

@@ -23,7 +23,7 @@ def index():
 def signup():
     userdata = []
     userdata.append(request.form['username'])
-    userdata.append(request.form['password'])
+    userdata.append(fn.HashPassword(request.form['password']))
     userdata.append(request.form['email'])
 
     resultdata = fn.SignupMyaccount(userdata)
@@ -189,6 +189,10 @@ def comments():
     fn.DataBaseManipulationInsertVideoComments(PostedComments,videoname,date)
 
     return PostedComments
+
+@app.route('/mypage')
+def mypage():
+    return render_template('mypage.html')
 
 if __name__=='__main__':
     app.run(debug=True,host='0.0.0.0')
