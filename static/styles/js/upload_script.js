@@ -8,9 +8,17 @@ $(document).ready(function () {
             var fileName = e.target.value.split("\\").pop();
             $(".file_label").text(fileName);
 
-            // li をすべて取得する
-            var myvideo_li = $('.myvideo-name').find('li').text();
-            console.log(myvideo_li);
+            //ユーザの全ファイル名を取得し配列に格納
+            var myvideo_names = [];
+            $('.myvideo-name').find('li').each( function( index, element ) {
+                myvideo_names.push(element.textContent );
+            })
+
+            //アップロードするファイルの名前が既に存在するか判定
+            myvideo_names.forEach(function(value) {
+                
+            });
+            
         }
     });
 });
