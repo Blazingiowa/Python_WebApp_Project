@@ -1,7 +1,11 @@
+var upmessage = document.getElementById('upload-message');
+$("#btnOF").prop("disabled", true);
+
 $(document).ready(function () {
     "use strict";
     $("#file").on("change", function (e) {
         var files = $(this)[0].files;
+        upmessage.innerHTML = "";
         if (files.length >= 2) {
             $(".file_label").text(files.length + " Files Ready To Upload");
         } else {
@@ -15,8 +19,13 @@ $(document).ready(function () {
             })
 
             //アップロードするファイルの名前が既に存在するか判定
-            myvideo_names.forEach(function(value) {
-                
+            myvideo_names.some(function(value) {
+                if(fileName == value){
+                    upmessage.innerHTML = "※そのファイル名は既に存在します";
+                    $("#btnOF").prop("disabled", true);
+                    return true;
+                }
+                $("#btnOF").prop("disabled", false);    
             });
             
         }

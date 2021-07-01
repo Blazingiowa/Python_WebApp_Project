@@ -854,3 +854,7 @@
       transform: translateX(0);
     }
   }
+  #upload-message{
+    text-align: center;
+    color: red;
+  }

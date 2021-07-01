@@ -173,7 +173,10 @@
               <input id="file" type="file" name="upfile" style="--delay: .8s" />
             </div>
           </form>
-          <button class="button alternative" style="--delay: .9s">アップロード</button>
+          <button class="button alternative" id="btnOF" style="--delay: .9s">アップロード</button>
+        </div>
+        <div>
+          <p id="upload-message"></p>
         </div>
       </div>
     </div>
@@ -181,7 +184,6 @@
   <form action="/video" method="POST" id="video-name-form" hidden>
     <input type="text" value="" id="video-name-text" name="video-name" />
   </form>
-
   <ul class='myvideo-name' hidden>
     {%for name in video%}
       <li>{{name}}</li>
