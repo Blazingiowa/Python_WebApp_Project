@@ -165,7 +165,20 @@ def trending():
 
 @app.route('/uploads')
 def uploads():
-    return render_template('upload.html')
+    video_files=[]
+    for filename in os.listdir(MP3_PATH):
+        if os.path.isfile(os.path.join(MP3_PATH,filename)):
+            video_files.append(filename)
+
+    for mp4files in os.listdir(VIDEO_PATH):
+        if os.path.isfile(os.path.join(VIDEO_PATH,mp4files)):
+            video_files.append(mp4files)
+
+    for otherfiles in os.listdir(OTHER_PATH):
+        if os.path.isfile(os.path.join(OTHER_PATH,otherfiles)):
+            video_files.append(otherfiles)
+            
+    return render_template('upload.html',video=video_files)
 
 @app.route('/music')
 def music():

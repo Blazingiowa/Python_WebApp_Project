@@ -7,6 +7,10 @@ $(document).ready(function () {
         } else {
             var fileName = e.target.value.split("\\").pop();
             $(".file_label").text(fileName);
+
+            // li をすべて取得する
+            var myvideo_li = $('.myvideo-name').find('li').text();
+            console.log(myvideo_li);
         }
     });
 });
