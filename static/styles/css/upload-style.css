@@ -857,6 +857,7 @@
   #upload-message{
     text-align: center;
     color: red;
+    opacity: 0;
   }
 
   .headline {
