@@ -1,3 +1,5 @@
+Splitting();
+
 $(document).ready(function () {
     "use strict";
     $("#file").on("change", function (e) {
@@ -16,7 +18,10 @@ $(document).ready(function () {
 
             //アップロードするファイルの名前が既に存在するか判定
             myvideo_names.forEach(function(value) {
-                
+                if(value==fileName)
+                {
+                    console.log("合致")
+                }
             });
             
         }
