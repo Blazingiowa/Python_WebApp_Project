@@ -1,3 +1,4 @@
+from crypt import methods
 import flask
 from flask import render_template, request, send_file
 import os
@@ -199,9 +200,20 @@ def comments():
     videoname=request.form['videoname']
     date=request.form['date']
 
-    fn.DataBaseManipulationInsertVideoComments(PostedComments,videoname,date)
+    video_id=fn.GetVideoId(videoname)
+
+    fn.DataBaseManipulationInsertVideoComments(PostedComments,videoname,date,video_id[0][0])
 
     return PostedComments
+
+@app.route('/delete',methods=['POST'])
+def delete():
+    video_name=request.form['videoname']
+    comtext=request.form['comment']
+
+    fn.DeleteData(video_name,comtext)
+
+    return "Complete"
 
 @app.route('/mypage')
 def mypage():

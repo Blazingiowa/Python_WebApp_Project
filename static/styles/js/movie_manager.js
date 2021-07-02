@@ -59,7 +59,30 @@ $(function () {
 
     $("#input1").val("");
   });
+
+  $(".delete-com").click(function(){
+    var vd_name=getVideoName();
+    var comtext=$(this).parent().parent().next().text();
+    
+    var trtext= comtext.replace(/\r?\n/g,"");
+    var TargetString = trtext.replace(/\s+/g, "");
+    //DB処理
+    DeleteCommentDataBase(vd_name,TargetString);
+
+    //HTML反映処理書こう
+  });
 });
+
+function DeleteCommentDataBase(video_name,comtext){
+  $.ajax({
+    url:'/delete',
+    type:'POST',
+    data:{
+      videoname:video_name,
+      comment:comtext
+    }
+  });
+}
 
 function ConnectMySQLThrowVideoComment(comment,videoname,PostedCommentDate){
   $.ajax({

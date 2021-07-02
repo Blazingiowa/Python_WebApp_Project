@@ -516,37 +516,3 @@
 .com-elm{
     display: none;
 }
-
-.shift-effect {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    color: #bba117;
-    outline: none;
-    border: none;
-    background: none;
-    box-shadow: inset 0 0 0 1px #bba117;
-    transition: color 0.35s ease-in-out;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-  .shift-effect:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -10%;
-    right: -10%;
-    transform: translateY(-50%);
-    opacity: 0;
-    width: 120%;
-    height: 0;
-    background: #bba117;
-    transition-property: opacity, height;
-    transition-duration: 0.35s;
-    transition-timing-function: ease-in-out;
-    z-index: -1;
-  }
-  .shift-effect:hover:after {
-    opacity: 1;
-    height: 120%;
-  }

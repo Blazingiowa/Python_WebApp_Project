@@ -114,12 +114,12 @@ def UpdateDataBaseCountUpNumberOfLikes(likes,video):
 
     CloseDatabaseConnection(cursor,connection)
 
-def DataBaseManipulationInsertVideoComments(comment,video_name,date):
+def DataBaseManipulationInsertVideoComments(comment,video_name,date,video_id):
     #DB接続
     connection=MySQLData()
     cursor=connection.cursor()
 
-    InsertVideoCommentSQL='INSERT INTO video_comments(video_name,comment,comdate) VALUES("'+video_name+'","'+comment+'","'+date+'")'
+    InsertVideoCommentSQL='INSERT INTO video_comments(video_id,video_name,comment,comdate) VALUES('+str(video_id)+',"'+video_name+'","'+comment+'","'+date+'")'
     cursor.execute(InsertVideoCommentSQL)
     connection.commit()
 
@@ -138,6 +138,30 @@ def GetAllVideoComments(videoname):
     CloseDatabaseConnection(cursor,conection)
 
     return rows
+
+def GetVideoId(video_name):
+    con=MySQLData()
+    cur=con.cursor()
+
+    GetIdSQL="SELECT video_id from video_info WHERE video_name='"+video_name+"'"
+    cur.execute(GetIdSQL)
+
+    result=cur.fetchall()
+
+    CloseDatabaseConnection(cur,con)
+
+    return result
+
+def DeleteData(video_name,comtext):
+    con=MySQLData()
+    cur=con.cursor()
+
+    DeleteSQL='DELETE FROM video_comments WHERE video_name="'+video_name+'" AND comment="'+comtext+'"'
+
+    cur.execute(DeleteSQL)
+    con.commit()
+
+    CloseDatabaseConnection(cur,con)
 
 def CloseDatabaseConnection(cursor,connection):
     cursor.close
