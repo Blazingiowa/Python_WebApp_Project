@@ -70,6 +70,7 @@ $(function () {
     DeleteCommentDataBase(vd_name,TargetString);
 
     //HTML反映処理書こう
+  $(this).parent().parent().parent().slideUp(2000);
   });
 });
 

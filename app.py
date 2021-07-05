@@ -219,5 +219,9 @@ def delete():
 def mypage():
     return render_template('mypage.html')
 
+@app.route('/member')
+def member():
+    return render_template('member.html')
+
 if __name__=='__main__':
     app.run(debug=True,host='0.0.0.0')
