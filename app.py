@@ -217,7 +217,16 @@ def delete():
 
 @app.route('/mypage')
 def mypage():
-    return render_template('mypage.html')
+    connection=fn.MySQLData()
+    cursor=connection.cursor()
+
+    sql='SELECT * FROM user_info';
+    cursor.execute(sql)
+
+    result=cursor.fetchall()
+
+
+    return render_template('mypage.html',sqlresult=result)
 
 @app.route('/member')
 def member():
