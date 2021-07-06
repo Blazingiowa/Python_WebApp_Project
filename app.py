@@ -18,7 +18,7 @@ ALLOWED_EXTENSIONS=['.mp3','.mp4','.jpg','.png']
 #APP_Route
 @app.route('/')
 def index():
-    return render_template('login.html')
+    return render_template('mypage.html')
 
 @app.route('/signup',methods=["POST"])
 def signup():
@@ -28,6 +28,7 @@ def signup():
     userdata.append(request.form['email'])
 
     resultdata = fn.SignupMyaccount(userdata)
+
     if resultdata == "success": 
         MP3_files=[]
         MP4_files=[]
