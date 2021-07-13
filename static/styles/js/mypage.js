@@ -33,3 +33,4 @@ $(function() {
     $(".info").toggleClass("active");
   });
 });
+

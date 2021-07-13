@@ -27,12 +27,11 @@
         <div class="sidebar-header">
           <div class="user-pic">
             <img class="img-responsive img-rounded"
-              src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+              src="{{sqlresult[0][4]}}" onError="this.onerror=null;this.src='data:image/png;base64,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'"
               alt="User picture">
           </div>
           <div class="user-info">
-            <span class="user-name">三浦
-              <strong>和音</strong>
+            <span class="user-name">{{sqlresult[0][1]}}
             </span>
             <span class="user-role">経営者</span>
             <span class="user-status">
@@ -54,144 +53,164 @@
             </div>
           </div>
         </div>
-        <!-- sidebar-search  -->
-        <div class="sidebar-menu">
-          <ul>
-            <li class="header-menu">
-              <span>一般</span>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-tachometer-alt"></i>
-                <span>設定</span>
-                <span class="badge badge-pill badge-warning">New</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">いろいろ 1
-                      <span class="badge badge-pill badge-success">Pro</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">いろいろ 2</a>
-                  </li>
-                  <li>
-                    <a href="#">いろいろ 3</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-shopping-cart"></i>
-                <span>E-commerce</span>
-                <span class="badge badge-pill badge-danger">3</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Products
+      <!-- sidebar-search  -->
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>一般</span>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar"></i>
+              <span>フォロー</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar"></i>
+              <span>フォロワー</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar"></i>
+              <span>投稿</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>設定</span>
+              <span class="badge badge-pill badge-warning">New</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">いろいろ
+                    <span class="badge badge-pill badge-success">Pro</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">いろいろ２</a>
+                </li>
+                <li>
+                  <a href="#">いろいろ３</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <!--
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-shopping-cart"></i>
+              <span>E-commerce</span>
+              <span class="badge badge-pill badge-danger">3</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Products
 
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">Orders</a>
-                  </li>
-                  <li>
-                    <a href="#">Credit cart</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="far fa-gem"></i>
-                <span>Components</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">General</a>
-                  </li>
-                  <li>
-                    <a href="#">Panels</a>
-                  </li>
-                  <li>
-                    <a href="#">Tables</a>
-                  </li>
-                  <li>
-                    <a href="#">Icons</a>
-                  </li>
-                  <li>
-                    <a href="#">Forms</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-chart-line"></i>
-                <span>Charts</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Pie chart</a>
-                  </li>
-                  <li>
-                    <a href="#">Line chart</a>
-                  </li>
-                  <li>
-                    <a href="#">Bar chart</a>
-                  </li>
-                  <li>
-                    <a href="#">Histogram</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-globe"></i>
-                <span>Maps</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Google maps</a>
-                  </li>
-                  <li>
-                    <a href="#">Open street map</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="header-menu">
-              <span>Extra</span>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-book"></i>
-                <span>Documentation</span>
-                <span class="badge badge-pill badge-primary">Beta</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-calendar"></i>
-                <span>Calendar</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-folder"></i>
-                <span>Examples</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!-- sidebar-menu  -->
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Orders</a>
+                </li>
+                <li>
+                  <a href="#">Credit cart</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="far fa-gem"></i>
+              <span>Components</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">General</a>
+                </li>
+                <li>
+                  <a href="#">Panels</a>
+                </li>
+                <li>
+                  <a href="#">Tables</a>
+                </li>
+                <li>
+                  <a href="#">Icons</a>
+                </li>
+                <li>
+                  <a href="#">Forms</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-chart-line"></i>
+              <span>Charts</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Pie chart</a>
+                </li>
+                <li>
+                  <a href="#">Line chart</a>
+                </li>
+                <li>
+                  <a href="#">Bar chart</a>
+                </li>
+                <li>
+                  <a href="#">Histogram</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-globe"></i>
+              <span>Maps</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Google maps</a>
+                </li>
+                <li>
+                  <a href="#">Open street map</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-book"></i>
+              <span>Documentation</span>
+              <span class="badge badge-pill badge-primary">Beta</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-folder"></i>
+              <span>Examples</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      -->
+      <!-- sidebar-menu  -->
       </div>
       <!-- sidebar-content  -->
       <div class="sidebar-footer">
@@ -216,12 +235,12 @@
     <!-- sidebar-wrapper  -->
     <main class="page-content">
       <div class="container">
-<<<<<<< Updated upstream
-        <h2>マイページっぽい何か</h2>
+
+        
         <!--ここに内容を書きましょう-->
         
-        {{sqlresult[0][1]}}
-=======
+        
+
         <!--<h2>マイページっぽい何か</h2>-->
           
         <div id="card">
@@ -229,8 +248,8 @@
             <div id="color"></div>
           </div>
           <div id="profile">
-            <img class="mypageicon" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/225748/profile.jpg"  alt="User" />
-            <h1>Iva Dopuđ</h1>
+            <img class="mypageicon" src="{{sqlresult[0][4]}}" onError="this.onerror=null;this.src='data:image/png;base64,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'" alt="User" />
+            <h1>{{sqlresult[0][1]}}</h1>
             <p>Front-end Web Developer</p>
             <div class="info">
               <i class="fa fa-info fa-1x block"></i>
@@ -271,7 +290,7 @@
   <!-- sidebar-wrapper  -->
   
       <!--
->>>>>>> Stashed changes
+
       
       <hr>
       <div class="row">
@@ -294,8 +313,7 @@
               Github</a>
             <a href="https://azouaoui-med.github.io/react-pro-sidebar" target="_blank" class="btn btn-sm btn-success">
               Demo</a>
->>>>>>> Stashed changes
-
+            -->
 
 
       </div>

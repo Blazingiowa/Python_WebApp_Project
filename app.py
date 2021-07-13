@@ -1,6 +1,6 @@
 from crypt import methods
 import flask
-from flask import render_template, request, send_file
+from flask import render_template, request, send_file,session
 import os
 import pathlib
 import functions as fn
@@ -12,13 +12,15 @@ MP3_PATH='/var/www/html/Web_File_SNS/static/mp3'
 VIDEO_PATH='/var/www/html/Web_File_SNS/static/mp4'
 OTHER_PATH='/var/www/html/Web_File_SNS/static/other'
 
+app.secret_key = 'result'
+
 ALLOWED_EXTENSIONS=['.mp3','.mp4','.jpg','.png']
 #Function
     
 #APP_Route
 @app.route('/')
 def index():
-    return render_template('mypage.html')
+    return render_template('login.html')
 
 @app.route('/signup',methods=["POST"])
 def signup():
@@ -59,6 +61,17 @@ def login():
         videoes=[]
         files=fn.Array_manipulation(MP3_PATH)
         videoes=fn.Array_manipulation(VIDEO_PATH)
+        
+        connection=fn.MySQLData()
+        cursor=connection.cursor()
+
+        sql='SELECT * FROM user_info WHERE password='+"'"+password+"'"
+        cursor.execute(sql)
+
+        
+        result=cursor.fetchall()
+        session["result"] = result
+
         return render_template('index.html',file=files,video=videoes)
     else:
         return render_template('result.html',message="メールアドレスまたはパスワードが違います")
@@ -218,16 +231,10 @@ def delete():
 
 @app.route('/mypage')
 def mypage():
-    connection=fn.MySQLData()
-    cursor=connection.cursor()
-
-    sql='SELECT * FROM user_info';
-    cursor.execute(sql)
-
-    result=cursor.fetchall()
-
+    result = session["result"]
 
     return render_template('mypage.html',sqlresult=result)
+
 
 @app.route('/member')
 def member():
