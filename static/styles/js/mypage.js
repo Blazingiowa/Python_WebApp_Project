@@ -28,9 +28,20 @@ $("#show-sidebar").click(function() {
 });
 
 $(function() {
+<<<<<<< Updated upstream
   
   $(".block").on("click", function() {
+=======
+  $(".block").on("click", 
+  function() {
+>>>>>>> Stashed changes
     $(".info").toggleClass("active");
   });
 });
 
+<<<<<<< Updated upstream
+=======
+$(function() {
+  $("#card").draggable();
+});
+>>>>>>> Stashed changes
