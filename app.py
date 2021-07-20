@@ -240,5 +240,18 @@ def mypage():
 def member():
     return render_template('member.html')
 
+@app.route('/following')
+def following():
+    result = session["result"]
+
+    return render_template('following.html',sqlresult=result)
+
+@app.route('/followers')
+def followers():
+    result = session["result"]
+
+    return render_template('followers.html',sqlresult=result)
+
 if __name__=='__main__':
     app.run(debug=True,host='0.0.0.0')
+
