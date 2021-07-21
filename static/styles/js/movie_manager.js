@@ -1,9 +1,3 @@
-var video_elem = document.getElementById("my_video_1");
-
-video_elem.addEventListener('timeupdate', function () {
-  console.log(video_elem.currentTime);
-});
-
 const animateButton = e => {
   e.preventDefault;
   e.target.classList.remove('animate'); //reset animation
@@ -112,4 +106,43 @@ function ConnectMySQLThrowNumberOfLikes(Likes,video_name){
 function getVideoName(){
   var Video_name=$('.video-p-title').text();
   return Video_name;
+}
+
+var video_elem = document.getElementById("my_video_1");
+
+/*
+
+video_elem.addEventListener('timeupdate', function () {
+  console.log(video_elem.currentTime);
+});
+
+*/
+
+$(function(){
+  $(".chat-footer").click(function(){
+    //ライブ欄のコメント
+    var live_comment=$(".live-chat-text").val();
+    //動画名前取得
+    var video_name=getVideoName();
+    //日付取得
+    var ComDate=new Date();
+    var PostedLiveCommentDate=ComDate.getFullYear()+"-"+Number(ComDate.getMonth()+1)+"-"+ComDate.getDate();
+
+    //DB処理
+    postLiveComments(live_comment,video_name,PostedLiveCommentDate);
+
+    //HTML反映処理
+  });
+});
+
+function postLiveComments(comment,videoname,date){
+  $.ajax({
+    url:'/livecm',
+    type:'POST',
+    data:{
+      lvvideoname:videoname,
+      lvdate:date,
+      lvcomment:comment
+    }
+  });
 }

@@ -163,6 +163,19 @@ def DeleteData(video_name,comtext):
 
     CloseDatabaseConnection(cur,con)
 
-def CloseDatabaseConnection(cursor,connection):
+def RiceShower(vdname,cmdate,lvcom):
+    con=MySQLData()
+    cur=con.cursor()
+
+    LvComSQL='INSERT INTO video_comments(video_name,comdate,live_comments) VALUES("'+vdname+'",'+cmdate+',"'+lvcom+'")'
+
+    cur.execute(LvComSQL)
+    con.commit()
+
+    CloseDatabaseConnection(cur,con)
+
+'''def CloseDatabaseConnection(cursor,connection):
     cursor.close
     connection.close
+
+'''

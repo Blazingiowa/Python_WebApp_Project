@@ -1,4 +1,5 @@
 from crypt import methods
+from datetime import date
 import flask
 from flask import render_template, request, send_file,session
 import os
@@ -251,6 +252,16 @@ def followers():
     result = session["result"]
 
     return render_template('followers.html',sqlresult=result)
+
+@app.route('/livecm')
+def livecm():
+    vdname=request.form['lvvideoname']
+    lvdate=request.form['lvdate']
+    lvcomment=request.form['lvcomment']
+
+    fn.RiceShower(vdname,lvdate,lvcomment)
+
+    return "ヴォイニッチ手稿"
 
 if __name__=='__main__':
     app.run(debug=True,host='0.0.0.0')
